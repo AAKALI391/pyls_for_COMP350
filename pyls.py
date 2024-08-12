@@ -31,6 +31,9 @@ parser.add_argument(
 args = parser.parse_args()
 
 def get_data(dir):
+    """
+    gets data from the directory provided. First checks if dirname is provided, else uses current directory
+    """
     if dir == None or dir==".":
         directory = os.getcwd()
     else:
@@ -53,6 +56,9 @@ def get_data(dir):
     return file_data
 
 def format_data(file_meatadata,f,l):
+    """
+    formats data and prints it. Takes a list of dictionaries containing file metadata as input, and prints the relevent output depending on the flags
+    """
     if f:
         for i in file_meatadata:
             if i["type"] == "d":
@@ -66,6 +72,9 @@ def format_data(file_meatadata,f,l):
     if not l:
         for i in file_meatadata:
             print(i["name"])
+def main():
+    metadata = get_data(args.dirname)
+    format_data(metadata,args.filetype, args.long_format )
 
-metadata = get_data(args.dirname)
-format_data(metadata,args.filetype, args.long_format )
+if __name__ == "__main__":
+    main()
