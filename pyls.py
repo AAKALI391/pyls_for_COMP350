@@ -22,5 +22,20 @@ def get_data(dir):
         file_data.append(data)
     return file_data
 
+def format_data(file_meatadata,f,l):
+    if f:
+        for i in file_meatadata:
+            if i["type"] == "d":
+                i["name"] = i["name"]+"/"
+            if i["type"] == "x":
+                i["name"] = i["name"]+"*"
+    if l:
+        for i in file_meatadata:
+            out_str = i["last_mod"].strftime("%Y-%m-%d %H:%M:%S") + "\t" + str(i["size"]) +"\t"+ i["name"]
+            print(out_str)
+    if not l:
+        for i in file_meatadata:
+            print(i["name"])
+
 metadata = get_data("")
 print(metadata)
