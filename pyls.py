@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 
+
 def get_data(dir):
     if dir == None or dir=="":
         directory = os.getcwd()
